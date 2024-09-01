@@ -5,6 +5,10 @@ import '/src/features/sign_up/presentation/widgets/signup_header.dart';
 import 'package:flutter/material.dart';
 
 class SignUpS extends StatefulWidget {
+  static const routeAddress = '/sign-up';
+  static const routeName = 'Sign Up';
+  const SignUpS({super.key});
+
   @override
   State<SignUpS> createState() => _SignUpSState();
 }

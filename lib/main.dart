@@ -1,27 +1,28 @@
-import 'package:backmate/src/features/login/presentation/screens/login_screen.dart';
+import 'package:backmate/src/routes/app_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'src/features/home_page/presentation/screens/homepage_s.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       title: 'BackMate',
       theme: ThemeData(
           textTheme: GoogleFonts.ralewayTextTheme(),
           colorScheme: MaterialTheme.lightScheme()),
-      home: const LoginScreen(),
     );
   }
 }

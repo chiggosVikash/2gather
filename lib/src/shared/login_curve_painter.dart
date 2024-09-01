@@ -1,6 +1,5 @@
 import '/src/extension/context_extension.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 
 class LoginCurvePainter extends CustomPainter {
   final BuildContext context;

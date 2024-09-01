@@ -1,12 +1,18 @@
-import 'package:backmate/src/features/forgot_password/presentation/screens/forgot_password_s.dart';
-import 'package:backmate/src/features/sign_up/presentation/screens/sign_up_s.dart';
-import 'package:backmate/src/shared/filled_input_design.dart';
+import 'package:backmate/src/shared/widgets/custom_button.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../home_page/presentation/screens/homepage_s.dart';
+import '/src/features/forgot_password/presentation/screens/forgot_password_s.dart';
+import '/src/features/sign_up/presentation/screens/sign_up_s.dart';
+import '/src/shared/filled_input_design.dart';
 
 import '/src/extension/context_extension.dart';
 import '/src/shared/login_curve_painter.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeAddress = '/login';
+  static const routeName = 'Login';
   const LoginScreen({super.key});
 
   @override
@@ -17,7 +23,7 @@ class LoginScreen extends StatelessWidget {
           // Top image section
           CustomPaint(
             painter: LoginCurvePainter(context: context),
-            child: Container(
+            child: SizedBox(
               height: context.height * .3,
               width: context.width, //
             ),
@@ -79,10 +85,7 @@ class LoginScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ForgotPasswordS()));
+                      context.pushNamed(ForgotPasswordS.routeName);
                     },
                     child: const Text('Forgot Password ?',
                         style: TextStyle(fontWeight: FontWeight.w600)),
@@ -90,20 +93,9 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: context.height * .03),
 
-                // Login Button
-                FilledButton(
-                  onPressed: () {},
-                  style: FilledButton.styleFrom(
-                    minimumSize: Size(context.width * .9, context.height * .06),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  child: Text('Login',
-                      style: context.textTheme.bodyLarge!.copyWith(
-                          color: context.colorScheme.onPrimary,
-                          fontWeight: FontWeight.bold)),
-                ),
+               CustomButton(title: "Login",onPressed: (){
+                  context.pushNamed(HomepageS.routeName);
+               },),
                 SizedBox(height: context.height * .02),
 
                 // Sign Up Link
@@ -114,8 +106,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyle(color: context.colorScheme.outline)),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => SignUpS()));
+                        context.pushNamed(SignUpS.routeName);
                       },
                       child: const Text(
                         'Sign Up',

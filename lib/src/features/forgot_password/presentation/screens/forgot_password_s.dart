@@ -1,9 +1,13 @@
 import 'package:backmate/src/extension/context_extension.dart';
+import 'package:backmate/src/features/forgot_password/presentation/screens/otp_screen.dart';
 import 'package:backmate/src/shared/filled_input_design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgotPasswordS extends StatefulWidget {
+  static const routeAddress = '/forgot-password';
+  static const routeName = 'Forgot Password';
   const ForgotPasswordS({super.key});
 
   @override
@@ -62,7 +66,9 @@ class _ForgotPasswordSState extends State<ForgotPasswordS> {
                         minimumSize:
                             Size(context.width * .8, context.height * .06),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(OtpScreen.routeName);
+                      },
                       child: const Text("Send OTP")),
                 )
               ],
