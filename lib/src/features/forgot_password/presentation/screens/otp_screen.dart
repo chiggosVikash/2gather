@@ -1,3 +1,6 @@
+import '/src/features/forgot_password/presentation/screens/change_password_screen.dart';
+import 'package:go_router/go_router.dart';
+
 import '/src/core/utils/size_utils.dart';
 import '/src/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +71,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
               CustomButton(
                 minSize: Size(context.width *.6, context.height * .06),
                 title: 'Verify', onPressed: () {
-                // context.pushNamed();
+                context.pushNamed(ChangePasswordScreen.routeName);
               }),
              
             ],

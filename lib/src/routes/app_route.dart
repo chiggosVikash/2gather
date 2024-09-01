@@ -1,4 +1,5 @@
 
+import '../features/forgot_password/presentation/screens/change_password_screen.dart';
 import '/src/features/forgot_password/presentation/screens/otp_screen.dart';
 
 import '/src/features/forgot_password/presentation/screens/forgot_password_s.dart';
@@ -29,6 +30,12 @@ final appRouter = GoRouter(
       GoRoute(path: OtpScreen.routeAddress,
         name: OtpScreen.routeName,
         builder: (context, state) => const OtpScreen(),
+        routes: [
+          GoRoute(path: ChangePasswordScreen.routeAddress,
+            name: ChangePasswordScreen.routeName,
+            builder: (context, state) => const ChangePasswordScreen(),
+          ),
+        ]
       ),
     ]
   ),
