@@ -1,3 +1,4 @@
+import '/src/features/request_by_you_history/presentation/screens/request_by_you_history.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
 import '../features/forgot_password/presentation/screens/change_password_screen.dart';
 import '/src/features/forgot_password/presentation/screens/otp_screen.dart';
@@ -44,5 +45,9 @@ final appRouter = GoRouter(initialLocation: LoginScreen.routeAddress, routes: [
     path: RequestToYou.routeAddress,
     name: RequestToYou.routeName,
     builder: (context, state) => const RequestToYou(),
-  )
+  ),
+  GoRoute(
+      path: RequestByYouHistory.routeAddress,
+      name: RequestByYouHistory.routeName,
+      builder: (context, state) => const RequestByYouHistory())
 ]);

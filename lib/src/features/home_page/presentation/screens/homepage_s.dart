@@ -1,3 +1,5 @@
+import 'package:backmate/src/features/home_page/presentation/widgets/drawer.dart';
+
 import '/src/features/home_page/presentation/widgets/your_request_status.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
 import 'package:go_router/go_router.dart';
@@ -21,65 +23,66 @@ class _HomepageSState extends State<HomepageS> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const DrawerW(),
         body: CustomScrollView(
-      slivers: [
-        const SliverAppBar(
-          pinned: true,
-          title: Text("Home"),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: context.width * .04,
-                vertical: context.height * .01),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const NearbyPlaces(title: "Nearby Restaurants"),
-                SizedBox(
-                  height: context.height * .02,
-                ),
-                const NearbyPlaces(title: "Nearby Hotels"),
-                SizedBox(
-                  height: context.height * .02,
-                ),
-                const NearbyPlaces(title: "Nearby Pubs")
-              ],
+          slivers: [
+            const SliverAppBar(
+              pinned: true,
+              title: Text("Home"),
             ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: context.width * .04,
-                vertical: context.height * .01),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TitleText(title: "Recent Requests (2)"),
-                SizedBox(
-                  height: context.height * .02,
+            SliverToBoxAdapter(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.width * .04,
+                    vertical: context.height * .01),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const NearbyPlaces(title: "Nearby Restaurants"),
+                    SizedBox(
+                      height: context.height * .02,
+                    ),
+                    const NearbyPlaces(title: "Nearby Hotels"),
+                    SizedBox(
+                      height: context.height * .02,
+                    ),
+                    const NearbyPlaces(title: "Nearby Pubs")
+                  ],
                 ),
-                Column(
-                  children: List.generate(2, (index) {
-                    return const RequestInfoCard();
-                  }),
-                ),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: FilledButton.tonal(
-                        style: FilledButton.styleFrom(
-                            visualDensity: VisualDensity.compact),
-                        onPressed: () {
-                          context.pushNamed(RequestToYou.routeName);
-                        },
-                        child: const Text("View All"))),
-                const YourRequestStatus()
-              ],
+              ),
             ),
-          ),
-        )
-      ],
-    ));
+            SliverToBoxAdapter(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.width * .04,
+                    vertical: context.height * .01),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const TitleText(title: "Recent Requests (2)"),
+                    SizedBox(
+                      height: context.height * .02,
+                    ),
+                    Column(
+                      children: List.generate(2, (index) {
+                        return const RequestInfoCard();
+                      }),
+                    ),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: FilledButton.tonal(
+                            style: FilledButton.styleFrom(
+                                visualDensity: VisualDensity.compact),
+                            onPressed: () {
+                              context.pushNamed(RequestToYou.routeName);
+                            },
+                            child: const Text("View All"))),
+                    const YourRequestStatus()
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

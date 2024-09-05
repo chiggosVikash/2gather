@@ -1,4 +1,5 @@
 import 'package:backmate/src/extension/context_extension.dart';
+import 'package:backmate/src/shared/widgets/date_and_time_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,52 +46,7 @@ class RequestInfoCard extends StatelessWidget {
           SizedBox(
             height: context.height * .01,
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: context.width * .4,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.date_range,
-                      size: context.height * .02,
-                      color: context.colorScheme.primary,
-                    ),
-                    SizedBox(
-                      width: context.width * .02,
-                    ),
-                    Text(
-                      "12 Aug,2024",
-                      style: context.textTheme.bodyMedium!.merge(
-                          GoogleFonts.inter(
-                              color: context.colorScheme.outline)),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: context.width * .4,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.timelapse,
-                      size: context.height * .02,
-                      color: context.colorScheme.primary,
-                    ),
-                    SizedBox(
-                      width: context.width * .02,
-                    ),
-                    Text(
-                      "08:00 AM",
-                      style: context.textTheme.bodyMedium!.merge(
-                          GoogleFonts.inter(
-                              color: context.colorScheme.outline)),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+          const DateAndTimeView(),
           SizedBox(
             height: context.height * .01,
           ),
