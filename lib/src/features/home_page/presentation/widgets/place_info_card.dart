@@ -23,7 +23,6 @@ class PlaceInfoCard extends StatelessWidget {
         height: context.height * .2,
         width: context.width / 2,
         child: LayoutBuilder(builder: (context, constraints) {
-          print("maxWidth: ${constraints.maxWidth}");
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

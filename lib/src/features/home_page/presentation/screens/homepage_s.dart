@@ -1,12 +1,10 @@
-import 'package:backmate/src/features/home_page/presentation/widgets/your_request_status.dart';
-
+import '/src/features/home_page/presentation/widgets/your_request_status.dart';
+import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
+import 'package:go_router/go_router.dart';
 import '/src/features/home_page/presentation/widgets/request_info_card.dart';
-
 import '/src/core/utils/size_utils.dart';
 import '/src/features/home_page/presentation/widgets/nearby_places.dart';
-import 'package:backmate/src/features/home_page/presentation/widgets/place_info_card.dart';
-import 'package:backmate/src/features/home_page/presentation/widgets/title_text.dart';
-import 'package:backmate/src/shared/widgets/place_card.dart';
+import '/src/features/home_page/presentation/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class HomepageS extends StatefulWidget {
@@ -20,7 +18,6 @@ class HomepageS extends StatefulWidget {
 }
 
 class _HomepageSState extends State<HomepageS> {
-  final GlobalKey _horizontalListKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +70,9 @@ class _HomepageSState extends State<HomepageS> {
                     child: FilledButton.tonal(
                         style: FilledButton.styleFrom(
                             visualDensity: VisualDensity.compact),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.pushNamed(RequestToYou.routeName);
+                        },
                         child: const Text("View All"))),
                 const YourRequestStatus()
               ],
