@@ -5,8 +5,7 @@ import '/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -21,6 +20,8 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'BackMate',
       theme: ThemeData(
+          appBarTheme: AppBarTheme(
+              backgroundColor: MaterialTheme.lightScheme().inversePrimary),
           textTheme: GoogleFonts.ralewayTextTheme(),
           colorScheme: MaterialTheme.lightScheme()),
     );

@@ -73,9 +73,11 @@ flutter:
   assets:
     - assets/handshake.jpeg
     - assets/google-logo.jpg
+    - assets/images/place.jpeg
     - assets/forget-password.svg
     - assets/vectors/enter_otp.svg
     - assets/vectors/reset_password.svg
+    - assets/vectors/star.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

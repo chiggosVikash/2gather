@@ -93,9 +93,13 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: context.height * .03),
 
-               CustomButton(title: "Login",onPressed: (){
-                  context.pushNamed(HomepageS.routeName);
-               },),
+                CustomButton(
+                  title: "Login",
+                  onPressed: () {
+                    context.pushNamed(HomepageS.routeName);
+                    print("button pressed");
+                  },
+                ),
                 SizedBox(height: context.height * .02),
 
                 // Sign Up Link
