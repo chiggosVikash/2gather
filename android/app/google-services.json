@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "16816371584",
+    "project_id": "gether-435117",
+    "storage_bucket": "gether-435117.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16816371584:android:f6ae8beff06665479b7365",
+        "android_client_info": {
+          "package_name": "com.ygsd.backmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqyVw557hCx3Qv4SHkv4bkCfCcaFJvUsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
