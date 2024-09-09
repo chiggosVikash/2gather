@@ -26,9 +26,12 @@ class _HomepageSState extends State<HomepageS> {
         drawer: const DrawerW(),
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
+            SliverAppBar(
+              actions: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+              ],
               pinned: true,
-              title: Text("Home"),
+              title: const Text("Home"),
             ),
             SliverToBoxAdapter(
               child: Container(
