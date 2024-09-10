@@ -147,10 +147,15 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: context.height * .02),
 
                 // Google Sign In Button (Icon)
-                const Center(
-                    child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/google-logo.jpg'),
-                )),
+                Center(
+                    child: GestureDetector(
+                      onTap: (){
+                        
+                      },
+                      child: const CircleAvatar(
+                                        backgroundImage: AssetImage('assets/google-logo.jpg'),
+                                      ),
+                    )),
               ],
             ),
           ),
