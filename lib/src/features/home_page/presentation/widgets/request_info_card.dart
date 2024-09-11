@@ -1,7 +1,6 @@
 import 'package:backmate/src/extension/context_extension.dart';
 import 'package:backmate/src/shared/widgets/date_and_time_view.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RequestInfoCard extends StatelessWidget {
   const RequestInfoCard({super.key});

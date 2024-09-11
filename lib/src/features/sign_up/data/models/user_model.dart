@@ -17,6 +17,7 @@ class UserModel {
   final int updatedAt;
 
   UserModel({
+
     required this.name,
     required this.email,
     this.phone,

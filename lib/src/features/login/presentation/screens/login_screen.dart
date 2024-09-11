@@ -1,22 +1,25 @@
-import 'package:backmate/src/shared/widgets/custom_button.dart';
-import 'package:go_router/go_router.dart';
+import 'package:backmate/src/features/login/presentation/providers/login_provider.dart';
 
+import '../../../../error_handlers/auth_error_handler.dart';
+import '../../../../shared/widgets/dialogues/dialogue.dart';
+import '/src/shared/widgets/custom_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../home_page/presentation/screens/homepage_s.dart';
 import '/src/features/forgot_password/presentation/screens/forgot_password_s.dart';
 import '/src/features/sign_up/presentation/screens/sign_up_s.dart';
 import '/src/shared/filled_input_design.dart';
-
 import '/src/extension/context_extension.dart';
 import '/src/shared/login_curve_painter.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   static const routeAddress = '/login';
   static const routeName = 'Login';
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
         children: [
@@ -97,7 +100,6 @@ class LoginScreen extends StatelessWidget {
                   title: "Login",
                   onPressed: () {
                     context.pushNamed(HomepageS.routeName);
-                    print("button pressed");
                   },
                 ),
                 SizedBox(height: context.height * .02),
@@ -147,15 +149,49 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: context.height * .02),
 
                 // Google Sign In Button (Icon)
-                const Center(
-                    child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/google-logo.jpg'),
-                )),
+                Consumer(builder: (context, ref, child) { 
+                  final state = ref.watch(loginProvider);   
+                  return Center(
+                    child: GestureDetector(
+                      onTap: state.isLoading ? null : (){
+                        _processDialogue(context, ref);
+                        ref.read(loginProvider.notifier).loginWithGoogle();
+                        
+                      },
+                      child: const CircleAvatar(
+                                        backgroundImage: AssetImage('assets/google-logo.jpg'),
+                                      ),
+                    )); },),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _processDialogue(BuildContext context, WidgetRef ref){
+    showDialog(context: context, builder: (context){
+
+      return Consumer(builder: (context, ref, child)  {
+          final state = ref.watch(loginProvider);
+      if(state.isLoading){
+        return const SavingDialogue(title: "Logging in...");
+      }
+      if(state.hasError){
+        final error = state.error as AuthError;
+        return FailedDialogue(message: error.message, cancelButton: (){
+          context.pop();
+        }, tryAgainButton: (){
+          context.pop();
+        });
+      }
+      return SuccessfulDialogue(content: "Login Successful", onPressed: (){
+        context.pop();
+        context.pushNamed(HomepageS.routeName);
+      });
+      },);
+    
+    });
   }
 }

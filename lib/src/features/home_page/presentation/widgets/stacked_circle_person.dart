@@ -1,5 +1,4 @@
 import 'package:backmate/src/extension/context_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StackedCirclePerson extends StatelessWidget {

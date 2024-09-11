@@ -107,7 +107,7 @@ class _SignUpSState extends State<SignUpS> {
                       FilledInputDesign(
                         child: TextFormField(
                           decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.phone),
+                              suffixIcon: const Icon(Icons.phone),
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: context.width * .02,
                                   vertical: context.height * .005),
