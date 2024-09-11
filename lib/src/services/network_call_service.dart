@@ -1,11 +1,14 @@
 
+
 import 'package:dio/dio.dart';
 
+typedef NetworkCall = NetworkCallServiceI;
+
 sealed class NetworkCallServiceI{
-  Future<String> get({required String url});
-  Future<String> post(String url, Map<String, dynamic> body);
-  Future<String> put(String url, Map<String, dynamic> body);
-  Future<String> delete({required String url});
+  Future<Response> get({required String url});
+  Future<Response> post(String url, Map<String, dynamic> body);
+  Future<Response> put(String url, Map<String, dynamic> body);
+  Future<Response> delete({required String url});
 }
 
 class NetworkCallService implements NetworkCallServiceI{
@@ -18,27 +21,27 @@ class NetworkCallService implements NetworkCallServiceI{
 
   );
   @override
-  Future<String> delete({required String url}) async{
+  Future<Response> delete({required String url}) async{
     final response = await _dio.delete(url, options: _options);
-    return response.data;
+    return response;
   }
 
   @override
-  Future<String> get({required String url}) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<Response> get({required String url}) async{
+    final response = await _dio.get(url, options: _options);
+    return response;
   }
 
   @override
-  Future<String> post(String url, Map<String, dynamic> body) {
-    // TODO: implement post
-    throw UnimplementedError();
+  Future<Response> post(String url, Map<String, dynamic> body) async{
+    final response = await _dio.post(url, data: body, options: _options);
+    return response;
   }
 
   @override
-  Future<String> put(String url, Map<String, dynamic> body) {
-    // TODO: implement put
-    throw UnimplementedError();
+  Future<Response> put(String url, Map<String, dynamic> body) async{
+    final response = await _dio.put(url, data: body, options: _options);
+    return response;
   }
 }
 

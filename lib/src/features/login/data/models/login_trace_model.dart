@@ -26,4 +26,24 @@ class LoginTraceModel {
 
   // Method for converting a LoginTrace instance to a map
   Map<String, dynamic> toJson() => _$LoginTraceModelToJson(this);
+
+  // copyWith method for updating the LoginTrace instance
+
+  LoginTraceModel copyWith({
+    String? userId,
+    int? loginTime,
+    int? logoutTime,
+    String? loginDevice,
+    String? loginIp,
+    String? accessToken,
+  }) {
+    return LoginTraceModel(
+      userId: userId ?? this.userId,
+      loginTime: loginTime ?? this.loginTime,
+      logoutTime: logoutTime ?? this.logoutTime,
+      loginDevice: loginDevice ?? this.loginDevice,
+      loginIp: loginIp ?? this.loginIp,
+      accessToken: accessToken ?? this.accessToken,
+    );
+  } 
 }
