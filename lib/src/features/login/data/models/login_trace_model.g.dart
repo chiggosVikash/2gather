@@ -13,6 +13,7 @@ LoginTraceModel _$LoginTraceModelFromJson(Map<String, dynamic> json) =>
       logoutTime: (json['logoutTime'] as num?)?.toInt(),
       loginDevice: json['loginDevice'] as String?,
       loginIp: json['loginIp'] as String?,
+      accessToken: json['accessToken'] as String?,
     );
 
 Map<String, dynamic> _$LoginTraceModelToJson(LoginTraceModel instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$LoginTraceModelToJson(LoginTraceModel instance) =>
       'logoutTime': instance.logoutTime,
       'loginDevice': instance.loginDevice,
       'loginIp': instance.loginIp,
+      'accessToken': instance.accessToken,
     };

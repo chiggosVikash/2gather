@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-
 part 'login_trace_model.g.dart';
 
 @JsonSerializable()
 class LoginTraceModel {
+
   final String userId;
   final int loginTime;
   final int? logoutTime;
