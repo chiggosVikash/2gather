@@ -14,13 +14,11 @@ class HiveDbManager {
 
 
   /// Initialize Hive
-  
+
   Future<void> init() async {
     Hive.registerAdapter(LoginIdentifierModelAdapter());
-    await Future.wait([
-     Hive.initFlutter(),
-     Hive.openBox<LoginIdentifierModel>('loginIdentifierModel')
-    ]);
+    await Hive.initFlutter();
+    await Hive.openBox<LoginIdentifierModel>('loginIdentifierModel');   
     
   }
 

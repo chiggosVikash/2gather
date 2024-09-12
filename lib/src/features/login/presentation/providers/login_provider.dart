@@ -1,6 +1,8 @@
 
 
 import 'dart:async';
+import 'package:backmate/src/db/local/hive_query.dart';
+import 'package:backmate/src/features/login/data/models/login_identifier_model.dart';
 import 'package:backmate/src/features/sign_up/data/models/user_model.dart';
 import 'package:backmate/src/features/sign_up/repos/providers/sign_up_repo_provider.dart';
 import 'package:flutter/foundation.dart';
@@ -52,6 +54,7 @@ class LoginP extends AsyncNotifier<LoginTraceModel?>{
       // User exist in the database
       if(isEmailExist){
         final accessToken = await ref.read(loginRepoProvider).createLoginTrace(loginTrace);
+        await saveLoginIdentifierToLocalDb(email: user.email!, name: user.displayName ?? "NA", accessToken: accessToken);
         state = AsyncData(loginTrace.copyWith(accessToken: accessToken));
         return true;
         /// Save to local storage
@@ -72,7 +75,8 @@ class LoginP extends AsyncNotifier<LoginTraceModel?>{
 
       await createUser(userModel);
       final accessToken = await ref.read(loginRepoProvider).createLoginTrace(loginTrace);
-      print("Access Token: $accessToken after login trace creation");
+      await saveLoginIdentifierToLocalDb(email: user.email!, name: user.displayName ?? "NA", accessToken: accessToken);
+      // 
 
 
 
@@ -89,6 +93,10 @@ class LoginP extends AsyncNotifier<LoginTraceModel?>{
       return false;
     }
   }
+
+  Future<void> saveLoginIdentifierToLocalDb({required String email, required String name, required String accessToken})async{
+    await HiveQuery().addLoginIdentifier(LoginIdentifierModel(email: email, name: name, accessToken: accessToken));
+  } 
 
 
   Future<String> createUser(UserModel user){
