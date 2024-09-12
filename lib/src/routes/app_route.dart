@@ -1,3 +1,5 @@
+import 'package:backmate/src/db/local/hive_query.dart';
+
 import '/src/features/request_by_you_history/presentation/screens/request_by_you_history.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
 import '../features/forgot_password/presentation/screens/change_password_screen.dart';
@@ -8,7 +10,19 @@ import 'package:go_router/go_router.dart';
 import '../features/login/presentation/screens/login_screen.dart';
 import '../features/sign_up/presentation/screens/sign_up_s.dart';
 
-final appRouter = GoRouter(initialLocation: LoginScreen.routeAddress, routes: [
+final appRouter = GoRouter(
+  
+  redirect: (context,state){
+    return HiveQuery().getAccessToken().then((value) {
+      if(value != null){
+        return HomepageS.routeAddress;
+      }
+      return LoginScreen.routeAddress;
+    });
+  },
+  
+  
+  initialLocation: LoginScreen.routeAddress, routes: [
   GoRoute(
     path: HomepageS.routeAddress,
     name: HomepageS.routeName,
