@@ -1,6 +1,5 @@
 
 import 'package:hive_flutter/hive_flutter.dart';
-
 import '../../features/login/data/models/login_identifier_model.dart';
 
 class HiveDbManager {

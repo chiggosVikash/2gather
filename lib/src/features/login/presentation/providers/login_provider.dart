@@ -41,6 +41,7 @@ class LoginP extends AsyncNotifier<LoginTraceModel?>{
 
       final isEmailExist = await ref.read(loginRepoProvider).checkUserExist(user.email!);
 
+
         final deviceId = await ref.read(deviceInfoServiceProvider).getDeviceId();
         // final deviceName = await ref.read(deviceInfoServiceProvider).getDeviceName();
         final deviceIp = await ref.read(deviceInfoServiceProvider).getDeviceIp();
