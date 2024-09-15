@@ -9,8 +9,8 @@ import 'firebase_options.dart';
 
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
+  WidgetsFlutterBinding.ensureInitialized();
   await HiveDbManager().init();
 
 
@@ -28,7 +28,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      title: '2Gether',
+      title: '2Gather',
       theme: ThemeData(
           appBarTheme: AppBarTheme(
               backgroundColor: MaterialTheme.lightScheme().inversePrimary),
