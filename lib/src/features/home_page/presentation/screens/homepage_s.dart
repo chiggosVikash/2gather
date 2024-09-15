@@ -1,4 +1,6 @@
-import 'package:backmate/src/features/home_page/presentation/widgets/drawer.dart';
+import '/src/features/home_page/presentation/widgets/drawer.dart';
+import '/src/services/providers/user_location_service_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/src/features/home_page/presentation/widgets/your_request_status.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
@@ -9,17 +11,26 @@ import '/src/features/home_page/presentation/widgets/nearby_places.dart';
 import '/src/features/home_page/presentation/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
-class HomepageS extends StatefulWidget {
+class HomepageS extends ConsumerStatefulWidget {
   static const routeAddress = '/';
   static const routeName = 'Homepage';
 
   const HomepageS({super.key});
 
   @override
-  State<HomepageS> createState() => _HomepageSState();
+  ConsumerState<HomepageS> createState() => _HomepageSState();
 }
 
-class _HomepageSState extends State<HomepageS> {
+class _HomepageSState extends ConsumerState<HomepageS> {
+  @override
+  void initState() {
+    super.initState();
+    Future(()async{
+      final location = await ref.read(userLocationServiceProvider).getLatestLocation();
+      print(location);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

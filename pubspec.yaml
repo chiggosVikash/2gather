@@ -51,6 +51,9 @@ dependencies:
   path_provider: ^2.1.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  flutter_dotenv: ^5.1.0
+  google_maps_flutter: ^2.9.0
+  geolocator: ^13.0.1
 
   
 
@@ -83,6 +86,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/handshake.jpeg
     - assets/google-logo.jpg
     - assets/images/place.jpeg
@@ -91,6 +95,7 @@ flutter:
     - assets/vectors/reset_password.svg
     - assets/vectors/star.svg
   #   - images/a_dot_ham.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
