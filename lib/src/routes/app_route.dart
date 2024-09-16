@@ -1,4 +1,6 @@
 import 'package:backmate/src/db/local/hive_query.dart';
+import 'package:backmate/src/features/login/presentation/providers/login_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/src/features/request_by_you_history/presentation/screens/request_by_you_history.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
@@ -10,15 +12,29 @@ import 'package:go_router/go_router.dart';
 import '../features/login/presentation/screens/login_screen.dart';
 import '../features/sign_up/presentation/screens/sign_up_s.dart';
 
-final appRouter = GoRouter(
+GoRouter appRouter(WidgetRef ref){
+  return GoRouter(
   
   redirect: (context,state){
     return HiveQuery().getAccessToken().then((value) {
+
       if(value != null){
-        return HomepageS.routeAddress;
+        return ref.read(loginProvider.notifier).verifyToken(value).then((result){
+          if(result == "TokenVerified"){
+            return HomepageS.routeAddress;
+          }
+          return LoginScreen.routeAddress;
+        });
+
+      }else{
+        return LoginScreen.routeAddress;
       }
-      return LoginScreen.routeAddress;
+
+      // return LoginScreen.routeAddress;
     });
+      
+    
+    
   },
   
   
@@ -65,3 +81,6 @@ final appRouter = GoRouter(
       name: RequestByYouHistory.routeName,
       builder: (context, state) => const RequestByYouHistory())
 ]);
+
+}
+

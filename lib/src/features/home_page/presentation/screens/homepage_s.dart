@@ -1,3 +1,4 @@
+
 import '/src/features/home_page/presentation/widgets/drawer.dart';
 import '/src/services/providers/user_location_service_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,6 +26,7 @@ class _HomepageSState extends ConsumerState<HomepageS> {
   @override
   void initState() {
     super.initState();
+   
     Future(()async{
       final location = await ref.read(userLocationServiceProvider).getLatestLocation();
       print(location);

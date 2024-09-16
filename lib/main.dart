@@ -30,7 +30,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      routerConfig: appRouter,
+      routerConfig: appRouter(ref),
       debugShowCheckedModeBanner: false,
       title: '2Gather',
       theme: ThemeData(

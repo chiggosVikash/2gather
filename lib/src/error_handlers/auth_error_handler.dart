@@ -20,3 +20,8 @@ class LogoutFailedError extends AuthError {
   final String errorMessage;
   LogoutFailedError({required this.errorMessage}) : super(errorMessage);
 }
+
+class TokenVerificationFailedError extends AuthError {
+  final String errorMessage;
+  TokenVerificationFailedError({required this.errorMessage}) : super(errorMessage);
+}

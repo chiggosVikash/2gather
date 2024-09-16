@@ -10,6 +10,7 @@ sealed class LoginDataSourceI{
   Future<bool> loginWithEmailAndPassword(String email, String password);
   Future<bool> checkUserExist(String email);
   Future<String> createLoginTrace(LoginTraceModel loginTrace);
+  Future<String> verifyToken(String token);
   Future<void> signOut();
 }
 
@@ -45,6 +46,18 @@ class LoginDataSource implements LoginDataSourceI{
       return response.data['token'];
     }
     throw LoginFailedError(errorMessage: "Login Failed with error code ${response.statusCode}");
+  }
+  
+  @override
+  Future<String> verifyToken(String token) async{
+    final response = await _networkCall.get(url: "${EndPoints.verifyToken}/$token");
+    if(response.statusCode == 200){
+      return response.data['message'];
+    }
+    if(response.statusCode == 401){
+      throw TokenVerificationFailedError(errorMessage: response.data['message']);
+    }
+    throw TokenVerificationFailedError(errorMessage: "Token Verification Failed with error code ${response.statusCode}");
   }
 
 }

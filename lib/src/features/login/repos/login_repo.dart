@@ -6,6 +6,7 @@ sealed class LoginRepoI {
   Future<bool> loginWithEmailAndPassword(String email, String password);
   Future<bool> checkUserExist(String email);
   Future<String> createLoginTrace(LoginTraceModel loginTrace);
+  Future<String> verifyToken(String token);
   Future<void> signOut();
 
 }
@@ -33,5 +34,10 @@ class LoginRepo implements LoginRepoI {
   @override
   Future<String> createLoginTrace(LoginTraceModel loginTrace) {
     return _loginDataSource.createLoginTrace(loginTrace);
+  }
+  
+  @override
+  Future<String> verifyToken(String token) {
+    return _loginDataSource.verifyToken(token);
   }
 }
