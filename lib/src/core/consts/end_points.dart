@@ -19,6 +19,10 @@ class EndPoints {
  static const createUser = user; // POST
  static const updateUserLocation = '$user/update-location'; // POST
 
+// map services
+static const mapServiceEndPoint = '$baseUrl/mapService';
+static const getNearbyPlaces = '$mapServiceEndPoint/nearbyPlaces'; // POST
+
 
 
 

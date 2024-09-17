@@ -27,6 +27,15 @@ class HiveQuery {
     return null;
   }
 
+  Future<String> getUserID() async {
+    final loginBox = HiveDbManager().loginBox;
+    if(loginBox.isNotEmpty){
+      final loginIdentifierModel = loginBox.getAt(0);
+      return loginIdentifierModel!.email;
+    }
+    return '';
+  }
+
 
 
 }

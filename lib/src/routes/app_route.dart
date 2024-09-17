@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:backmate/src/db/local/hive_query.dart';
 import 'package:backmate/src/features/login/presentation/providers/login_provider.dart';
+import 'package:backmate/src/features/nearby_places/presentation/screens/nearby_places.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '/src/features/request_by_you_history/presentation/screens/request_by_you_history.dart';
 import '/src/features/request_to_you/presentation/screens/request_to_you.dart';
 import '../features/forgot_password/presentation/screens/change_password_screen.dart';
@@ -12,19 +16,32 @@ import 'package:go_router/go_router.dart';
 import '../features/login/presentation/screens/login_screen.dart';
 import '../features/sign_up/presentation/screens/sign_up_s.dart';
 
-GoRouter appRouter(WidgetRef ref){
-  return GoRouter(
+
+FutureOr<String?> redirect(BuildContext context, GoRouterState state,WidgetRef ref) {
+
   
-  redirect: (context,state){
-    return HiveQuery().getAccessToken().then((value) {
+  return HiveQuery().getAccessToken().then((value) {
 
       if(value != null){
-        return ref.read(loginProvider.notifier).verifyToken(value).then((result){
-          if(result == "TokenVerified"){
+        try{
+           return ref.read(loginProvider.notifier).verifyToken(value).then((result){
+            print(state.fullPath);
+          if(result == "TokenVerified" && (state.fullPath == LoginScreen.routeAddress || state.fullPath == HomepageS.routeAddress)){
             return HomepageS.routeAddress;
+          }else if(result != "TokenVerified" && state.fullPath == LoginScreen.routeAddress){
+            return LoginScreen.routeAddress;
+          }
+          return null;
+          
+        });
+        }catch(e){
+          if(kDebugMode){
+            print(e);
           }
           return LoginScreen.routeAddress;
-        });
+          
+        }
+       
 
       }else{
         return LoginScreen.routeAddress;
@@ -33,10 +50,12 @@ GoRouter appRouter(WidgetRef ref){
       // return LoginScreen.routeAddress;
     });
       
-    
-    
-  },
+}
+
+GoRouter appRouter(WidgetRef ref){
+  return GoRouter(
   
+  redirect: (context, state) => redirect(context, state,ref),
   
   initialLocation: LoginScreen.routeAddress, routes: [
   GoRoute(
@@ -79,7 +98,10 @@ GoRouter appRouter(WidgetRef ref){
   GoRoute(
       path: RequestByYouHistory.routeAddress,
       name: RequestByYouHistory.routeName,
-      builder: (context, state) => const RequestByYouHistory())
+      builder: (context, state) => const RequestByYouHistory()),
+
+  GoRoute(path: NearbyPlaces.routeAddress, name: NearbyPlaces.routeName, 
+  builder: (context, state) => const NearbyPlaces()), 
 ]);
 
 }
