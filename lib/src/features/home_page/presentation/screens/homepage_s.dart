@@ -1,3 +1,8 @@
+
+import 'package:backmate/src/db/local/hive_query.dart';
+import 'package:backmate/src/features/home_page/repos/providers/homepage_repo_provider.dart';
+
+import '../../data/models/current_location_model.dart';
 import '/src/features/home_page/presentation/widgets/drawer.dart';
 import '/src/services/providers/user_location_service_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,9 +30,17 @@ class _HomepageSState extends ConsumerState<HomepageS> {
   @override
   void initState() {
     super.initState();
+   
     Future(()async{
       final location = await ref.read(userLocationServiceProvider).getLatestLocation();
-      print(location);
+
+      final currentLocationModel = CurrentLocationModel(
+        lat: location.$1,
+        lng: location.$2,
+        userId:await HiveQuery().getUserID(),
+
+      );
+      ref.read(homepageRepoProvider).saveCurrentLocation(currentLocation: currentLocationModel);
     });
   }
 

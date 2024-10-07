@@ -104,6 +104,10 @@ class LoginP extends AsyncNotifier<LoginTraceModel?>{
     return ref.read(signUpRepoProvider).signUp(user);
   }
 
+  Future<String> verifyToken(String token)async{
+    return ref.read(loginRepoProvider).verifyToken(token);
+  }
+
 
 }
 
