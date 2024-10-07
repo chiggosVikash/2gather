@@ -5,6 +5,7 @@ class EndPoints {
 
   /// base url
   static const baseUrl = 'http://192.168.1.42:3000/api/v1';
+  // static const baseUrl = 'https://00rqnupx1b.execute-api.ap-south-1.amazonaws.com/prod/api/v1';
 
  /// login end points
  static const login = '$baseUrl/login'; // GET
